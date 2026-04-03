@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ask Star Jesse Taylor — Mental Fitness Coach</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #0F0F0F;
+      color: #E2E8F0;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: #2DD4BF; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* Layout */
+    .container { max-width: 640px; margin: 0 auto; padding: 0 20px; }
+
+    /* Header */
+    .header {
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border-bottom: 1px solid #1E293B;
+      position: sticky;
+      top: 0;
+      background: #0F0F0F;
+      z-index: 50;
+    }
+    .header .back-arrow {
+      color: #2DD4BF;
+      font-size: 20px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+    }
+    .header-text { display: flex; flex-direction: column; }
+    .header-name {
+      font-size: 14px;
+      font-weight: 700;
+      color: #2DD4BF;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .header-subtitle {
+      font-size: 12px;
+      color: #94A3B8;
+      font-weight: 500;
+    }
+
+    /* Profile */
+    .profile-section {
+      text-align: center;
+      padding: 32px 20px 24px;
+    }
+    .avatar {
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #2DD4BF, #0D9488);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+      font-size: 40px;
+      font-weight: 700;
+      color: #0F0F0F;
+      box-shadow: 0 0 0 3px #0F0F0F, 0 0 0 5px #2DD4BF40;
+    }
+    .profile-name {
+      font-size: 22px;
+      font-weight: 700;
+      color: #F8FAFC;
+      margin-bottom: 4px;
+    }
+    .profile-roles {
+      font-size: 14px;
+      color: #94A3B8;
+      margin-bottom: 12px;
+      font-weight: 500;
+    }
+    .profile-bio {
+      font-size: 15px;
+      color: #CBD5E1;
+      max-width: 500px;
+      margin: 0 auto 12px;
+      line-height: 1.65;
+    }
+    .verified-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      color: #2DD4BF;
+      font-weight: 600;
+      background: #2DD4BF15;
+      padding: 4px 12px;
+      border-radius: 20px;
+    }
+    .verified-badge svg { width: 14px; height: 14px; }
+
+    /* Trust Stats */
+    .trust-stats {
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      padding: 16px 20px;
+      border-top: 1px solid #1E293B;
+      border-bottom: 1px solid #1E293B;
+      background: #1A1A2E;
+    }
+    .trust-stat {
+      flex: 1;
+      text-align: center;
+      font-size: 13px;
+      font-weight: 600;
+      color: #F8FAFC;
+      padding: 4px 0;
+    }
+    .trust-stat:not(:last-child) {
+      border-right: 1px solid #334155;
+    }
+    .trust-stat .star { color: #FBBF24; }
+
+    /* Ask Section */
+    .ask-section {
+      padding: 24px 20px;
+    }
+    .ask-card {
+      background: #1A1A2E;
+      border: 1px solid #1E293B;
+      border-radius: 16px;
+      padding: 24px;
+    }
+    .ask-card-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: #F8FAFC;
+      margin-bottom: 16px;
+      text-align: center;
+    }
+
+    /* Tier Buttons */
+    .tiers { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
+    .tier-btn {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 16px;
+      border-radius: 12px;
+      border: 1.5px solid #334155;
+      background: #1E293B;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .tier-btn:hover, .tier-btn.selected {
+      border-color: #2DD4BF;
+      background: #2DD4BF10;
+    }
+    .tier-btn.selected {
+      box-shadow: 0 0 0 1px #2DD4BF;
+    }
+    .tier-info { display: flex; flex-direction: column; }
+    .tier-name {
+      font-size: 15px;
+      font-weight: 600;
+      color: #F8FAFC;
+    }
+    .tier-desc {
+      font-size: 12px;
+      color: #94A3B8;
+      margin-top: 2px;
+    }
+    .tier-price {
+      font-size: 18px;
+      font-weight: 700;
+      color: #2DD4BF;
+      white-space: nowrap;
+    }
+
+    /* Question Input */
+    .question-input {
+      width: 100%;
+      min-height: 100px;
+      padding: 14px 16px;
+      background: #0F0F0F;
+      border: 1.5px solid #334155;
+      border-radius: 12px;
+      color: #F8FAFC;
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      resize: vertical;
+      margin-bottom: 16px;
+      transition: border-color 0.2s ease;
+    }
+    .question-input::placeholder { color: #64748B; }
+    .question-input:focus {
+      outline: none;
+      border-color: #2DD4BF;
+    }
+
+    /* CTA Button */
+    .cta-btn {
+      width: 100%;
+      padding: 14px;
+      background: #2DD4BF;
+      color: #0F0F0F;
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .cta-btn:hover {
+      background: #14B8A6;
+      transform: translateY(-1px);
+    }
+    .cta-btn:active { transform: translateY(0); }
+
+    /* Section Titles */
+    .section-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: #F8FAFC;
+      margin-bottom: 20px;
+    }
+
+    /* Example Q&A */
+    .qa-section {
+      padding: 8px 20px 32px;
+    }
+    .qa-card {
+      background: #1A1A2E;
+      border: 1px solid #1E293B;
+      border-radius: 14px;
+      padding: 20px;
+      margin-bottom: 16px;
+    }
+    .qa-question {
+      font-size: 15px;
+      font-weight: 600;
+      color: #F8FAFC;
+      margin-bottom: 12px;
+      line-height: 1.5;
+    }
+    .qa-question::before {
+      content: 'Q: ';
+      color: #2DD4BF;
+      font-weight: 700;
+    }
+    .qa-answer {
+      font-size: 14px;
+      color: #CBD5E1;
+      line-height: 1.7;
+      margin-bottom: 12px;
+      padding-left: 16px;
+      border-left: 2px solid #2DD4BF40;
+    }
+    .qa-answer-label {
+      font-weight: 700;
+      color: #2DD4BF;
+    }
+    .qa-footer {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      color: #94A3B8;
+    }
+    .qa-stars { color: #FBBF24; letter-spacing: 1px; }
+
+    /* Reviews */
+    .reviews-section {
+      padding: 0 20px 32px;
+    }
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    @media (max-width: 480px) {
+      .reviews-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .review-card {
+      background: #1E293B;
+      border: 1px solid #334155;
+      border-radius: 12px;
+      padding: 14px;
+    }
+    .review-stars {
+      color: #FBBF24;
+      font-size: 12px;
+      letter-spacing: 1px;
+      margin-bottom: 6px;
+    }
+    .review-text {
+      font-size: 13px;
+      color: #E2E8F0;
+      line-height: 1.55;
+      margin-bottom: 8px;
+      font-style: italic;
+    }
+    .review-author {
+      font-size: 11px;
+      color: #94A3B8;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .review-initial {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #334155;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      font-weight: 700;
+      color: #F8FAFC;
+    }
+    .review-verified {
+      color: #2DD4BF;
+      font-size: 11px;
+    }
+
+    /* Bottom CTA */
+    .bottom-cta {
+      padding: 32px 20px;
+      text-align: center;
+      background: #1A1A2E;
+      border-top: 1px solid #1E293B;
+    }
+    .bottom-cta-text {
+      font-size: 18px;
+      font-weight: 700;
+      color: #F8FAFC;
+      margin-bottom: 16px;
+    }
+    .bottom-cta .cta-btn {
+      max-width: 320px;
+      margin: 0 auto;
+    }
+
+    /* Footer */
+    .footer {
+      padding: 24px 20px;
+      text-align: center;
+      border-top: 1px solid #1E293B;
+    }
+    .footer-powered {
+      font-size: 12px;
+      color: #64748B;
+      margin-bottom: 8px;
+    }
+    .footer-links {
+      font-size: 12px;
+      color: #64748B;
+    }
+    .footer-links a {
+      color: #64748B;
+      margin: 0 8px;
+    }
+    .footer-links a:hover { color: #94A3B8; }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="back-arrow">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+    </div>
+    <div class="header-text">
+      <div class="header-name">Star Jesse Taylor</div>
+      <div class="header-subtitle">Mental Fitness Coach</div>
+    </div>
+  </header>
+
+  <!-- Profile -->
+  <section class="profile-section">
+    <div class="avatar">S</div>
+    <h1 class="profile-name">Star Jesse Taylor</h1>
+    <p class="profile-roles">Mental Fitness Coach &bull; Author &bull; Speaker</p>
+    <p class="profile-bio">I help you build emotional fitness with practical tools &mdash; not theory. Rewire your brain, crush anxiety, and take valued actions regardless of how you feel.</p>
+    <span class="verified-badge">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+      Verified
+    </span>
+  </section>
+
+  <!-- Trust Stats -->
+  <div class="trust-stats">
+    <div class="trust-stat">1,000+ helped</div>
+    <div class="trust-stat">5.0 <span class="star">&#9733;</span> rating</div>
+    <div class="trust-stat">&lt; 24hr response</div>
+  </div>
+
+  <!-- Ask Question -->
+  <section class="ask-section">
+    <div class="container">
+      <div class="ask-card">
+        <h2 class="ask-card-title">Ask Star a Question</h2>
+        <div class="tiers">
+          <div class="tier-btn" onclick="selectTier(this)">
+            <div class="tier-info">
+              <span class="tier-name">Quick Question</span>
+              <span class="tier-desc">Get a focused text answer</span>
+            </div>
+            <span class="tier-price">$15</span>
+          </div>
+          <div class="tier-btn selected" onclick="selectTier(this)">
+            <div class="tier-info">
+              <span class="tier-name">Deep Dive</span>
+              <span class="tier-desc">Detailed personalized guidance</span>
+            </div>
+            <span class="tier-price">$45</span>
+          </div>
+          <div class="tier-btn" onclick="selectTier(this)">
+            <div class="tier-info">
+              <span class="tier-name">Video Answer</span>
+              <span class="tier-desc">Personal video response from Star</span>
+            </div>
+            <span class="tier-price">$97</span>
+          </div>
+        </div>
+        <textarea class="question-input" placeholder="What's on your mind?"></textarea>
+        <button class="cta-btn">Ask Now</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Example Q&A -->
+  <section class="qa-section">
+    <div class="container">
+      <h2 class="section-title">Recent Answers</h2>
+
+      <div class="qa-card">
+        <p class="qa-question">How do I stop spiralling when anxiety hits out of nowhere?</p>
+        <p class="qa-answer"><span class="qa-answer-label">Star:</span> The key is understanding that your brain is doing what it was trained to do. You don't fight the spiral &mdash; you step outside it. Notice the thought, label it ("my brain is doing the anxiety pattern"), and immediately take a valued action. Even something small like making your bed or texting someone you love. You're teaching your brain that YOU choose what's important, not the anxiety. This is the foundation of mental fitness.</p>
+        <div class="qa-footer">
+          <span class="qa-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          <span>&ldquo;This changed everything for me&rdquo; &mdash; Anonymous</span>
+        </div>
+      </div>
+
+      <div class="qa-card">
+        <p class="qa-question">I've been in therapy for 2 years but still feel stuck. Is your approach different?</p>
+        <p class="qa-answer"><span class="qa-answer-label">Star:</span> Therapy is valuable but it often focuses on understanding WHY you feel a certain way. Mental fitness focuses on WHAT you do about it. I teach practical tools you can use in the moment &mdash; cognitive defusion, valued actions, the value garden practice. Most of my clients and readers say they got more from these simple tools than years of traditional approaches. It's not about replacing therapy &mdash; it's about adding the fitness layer.</p>
+        <div class="qa-footer">
+          <span class="qa-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          <span>&ldquo;Exactly what I needed to hear&rdquo; &mdash; Anonymous</span>
+        </div>
+      </div>
+
+      <div class="qa-card">
+        <p class="qa-question">How do I build self-worth when I don't feel like I deserve it?</p>
+        <p class="qa-answer"><span class="qa-answer-label">Star:</span> Here's the thing most people get wrong &mdash; self-worth isn't a feeling. It's a practice. You build it by doing valued actions REGARDLESS of how you feel. Show up for yourself even when your brain says you're not worth it. That's the workout. Every time you do something aligned with your values despite not feeling like it, you're literally rewiring your brain's self-worth pathways. Start small. Be consistent. The feeling follows the action, not the other way around.</p>
+        <div class="qa-footer">
+          <span class="qa-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          <span>&ldquo;Mind blown&rdquo; &mdash; Anonymous</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reviews -->
+  <section class="reviews-section">
+    <div class="container">
+      <h2 class="section-title">What People Are Saying</h2>
+      <div class="reviews-grid">
+
+        <div class="review-card">
+          <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="review-text">"This book shifted my entire mindset. I look at anxiety differently now."</p>
+          <div class="review-author"><span class="review-initial">C</span> C. <span class="review-verified">&#10003; Verified</span></div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="review-text">"No need to spend years on therapy. Packed with practical tools."</p>
+          <div class="review-author"><span class="review-initial">H</span> H. <span class="review-verified">&#10003; Verified</span></div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="review-text">"I was a slave to my brain. 3 years later, my life completely changed."</p>
+          <div class="review-author"><span class="review-initial">G</span> G. <span class="review-verified">&#10003; Verified</span></div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="review-text">"Read countless self-help books. This one actually changed my perspective."</p>
+          <div class="review-author"><span class="review-initial">A</span> A. <span class="review-verified">&#10003; Verified</span></div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="review-text">"The course gave me practical tools for every second of my day."</p>
+          <div class="review-author"><span class="review-initial">L</span> L. <span class="review-verified">&#10003; Verified</span></div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="review-text">"I can stop mid-thought and just stop spiralling. Immense freedom."</p>
+          <div class="review-author"><span class="review-initial">S</span> S. <span class="review-verified">&#10003; Verified</span></div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="review-text">"Clear, honest, no fluff. Exactly what I needed."</p>
+          <div class="review-author"><span class="review-initial">A</span> A. <span class="review-verified">&#10003; Verified</span></div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="review-text">"8 sessions and I feel like a completely different person."</p>
+          <div class="review-author"><span class="review-initial">K</span> K. <span class="review-verified">&#10003; Verified</span></div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="review-text">"He rewired my brain to focus on what I want to grow. Life has never been so clear."</p>
+          <div class="review-author"><span class="review-initial">L</span> L. <span class="review-verified">&#10003; Verified</span></div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="review-text">"It's life changing! I'm talking about it to people every day."</p>
+          <div class="review-author"><span class="review-initial">?</span> Anon <span class="review-verified">&#10003; Verified</span></div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="review-text">"Helped me take action, organize myself, keep my promises."</p>
+          <div class="review-author"><span class="review-initial">M</span> M. <span class="review-verified">&#10003; Verified</span></div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="review-text">"Your teachings are God's work. You're the big brother I never had."</p>
+          <div class="review-author"><span class="review-initial">G</span> G. <span class="review-verified">&#10003; Verified</span></div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="review-text">"Since watching, I post every day now. Practical guidance for lasting self-worth."</p>
+          <div class="review-author"><span class="review-initial">A</span> A. <span class="review-verified">&#10003; Verified</span></div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="review-text">"My emotions no longer rule my life. I can't recommend him enough."</p>
+          <div class="review-author"><span class="review-initial">L</span> L. <span class="review-verified">&#10003; Verified</span></div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="review-text">"This book is like a blueprint for grounding yourself."</p>
+          <div class="review-author"><span class="review-initial">C</span> C. <span class="review-verified">&#10003; Verified</span></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Bottom CTA -->
+  <section class="bottom-cta">
+    <div class="container">
+      <p class="bottom-cta-text">Ready to transform your mental fitness?</p>
+      <button class="cta-btn" onclick="window.scrollTo({top: document.querySelector('.ask-section').offsetTop - 60, behavior: 'smooth'})">Ask Star a Question</button>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p class="footer-powered">Powered by Nudge</p>
+    <p class="footer-links"><a href="#">Privacy</a> | <a href="#">Terms</a></p>
+  </footer>
+
+  <script>
+    function selectTier(el) {
+      document.querySelectorAll('.tier-btn').forEach(b => b.classList.remove('selected'));
+      el.classList.add('selected');
+    }
+  </script>
+
+</body>
+</html>
