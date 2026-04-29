@@ -95,6 +95,18 @@ For any future edits, open Claude Code and just say what you want:
 
 ---
 
+## Power workflows
+
+See **[WORKFLOWS.md](WORKFLOWS.md)** for 10 copy-paste prompts covering:
+- What to work on next
+- Bug checks before you ship
+- Mobile testing
+- Architecture review
+- How to add features without breaking things
+- End-of-session save + summary
+
+---
+
 ## Claude Code tips
 
 - Say which section to change: *"only update the coaching section prices"*
