@@ -1,12 +1,43 @@
-# Star Jesse Taylor — Website
+# Star Jesse Taylor — Website Setup
 
-Live site files: `index.html` (main site) + `ask.html` (Ask Me Anything page).
+## How to use this
+
+1. Go to [claude.ai/code](https://claude.ai/code) (or open the Claude Chrome extension)
+2. Paste this into the chat:
+
+```
+Read this README and set up my website: https://github.com/lucyc166/star-website
+```
+
+Claude will download the files, open them, and walk you through the rest.
 
 ---
 
-## Rebuild Prompt
+## What Claude will do for you
 
-Paste this into Claude Code to rebuild or modify the site:
+When you run the above prompt, Claude Code will:
+- Download all the website files from GitHub
+- Open them so you can preview the site
+- Help you make any changes (text, prices, images, colors)
+- Deploy to Vercel so it's live on the internet
+- Connect your domain
+
+---
+
+## Claude Setup Instructions
+
+> *This section is for Claude Code to read and execute.*
+
+1. Clone this repo: `git clone https://github.com/lucyc166/star-website.git`
+2. Open `index.html` in the browser to preview
+3. Ask the user: "What would you like to change before we go live?" 
+4. Make their edits to `index.html` and `ask.html`
+5. Deploy to Vercel:
+   - If Vercel CLI is installed: `npx vercel --prod`
+   - If not: tell the user to go to vercel.com, click "Add New Project", and drag the folder in
+6. Tell the user to connect their domain in Vercel → Settings → Domains
+
+**To rebuild from scratch**, use this prompt:
 
 ```
 Build me a personal website for Star Jesse Taylor, a mental fitness coach.
@@ -48,50 +79,22 @@ Pure HTML + CSS + vanilla JS. No frameworks. Two files: index.html and ask.html
 
 ---
 
-## How to Set This Up (no coding experience needed)
+## The 3 things that make a website work
 
-### The 3 things that make a website work
+**1. Code** — The two files in this repo (`index.html`, `ask.html`). Claude writes and edits these for you.
 
-**1. The code — Claude Code writes this for you**
-Your website is just two files: `index.html` and `ask.html`. Claude Code writes them. You describe what you want in plain English and it makes the changes — you never need to touch the actual code.
+**2. Vercel** — Puts your site on the internet. Free. Go to [vercel.com](https://vercel.com), drag your folder in, it's live.
 
-**2. Vercel — moves it from your computer to the internet**
-Vercel publishes your files so anyone can visit. Free. Drag your folder in, it gives you a URL. Takes 2 minutes. Every time you update something, redeploy.
+**3. Domain** — Your web address. Buy on [Namecheap](https://namecheap.com) or GoDaddy (~$12/yr), then connect it in Vercel settings.
 
-**3. Domain — your web address**
-Buy `starjessetaylor.com` on Namecheap or GoDaddy (~$12/yr), then point it at Vercel in the settings. Vercel walks you through it step by step.
-
-**If you later want bookings, payments, or user accounts — that's a database.**
-A database (Supabase) stores everything: who signed up, who booked a call, purchase history. You don't need this on day one. Start with the static site, link out to your existing shop and Calendly. Add the database when you're ready to build something more custom.
+**Database (Supabase)** — Only needed if you want user accounts, bookings, or stored data. Not needed to launch. Add later.
 
 ---
 
-## How to Use Claude Code
+## Tips for using Claude Code
 
-- Works in the browser at [claude.ai/code](https://claude.ai/code) or via the Chrome extension — no install needed
-- Talk to it like a contractor: *"change the coaching section price to $600"* or *"make the hero image bigger on mobile"*
-- Always say what NOT to touch: *"only edit the footer, don't change anything else"*
-- One change at a time — don't ask it to redesign everything in one message
-- If something breaks: *"undo that and go back to how it was"*
-
----
-
-## Biggest Mistakes to Avoid
-
-- **Trying to build everything at once** — site → database → payments → bookings. Ship the site first, add features one at a time.
-- **Not saving a backup** — push your files to GitHub (this repo) so every version is stored forever.
-- **Buying expensive tools before you need them** — a great site costs $12/yr (domain) + free Vercel.
-- **Editing the wrong file** — always tell Claude which file and which section to change.
-
----
-
-## Quickstart Checklist
-
-- [ ] Buy domain on Namecheap or GoDaddy (~$12)
-- [ ] Sign up for [Claude Code](https://claude.ai/code) ($20/mo) or use the Chrome extension
-- [ ] Paste the rebuild prompt above → get `index.html` + `ask.html`
-- [ ] Sign up for [Vercel](https://vercel.com) (free)
-- [ ] Drag your folder into Vercel → site is live
-- [ ] Connect your domain in Vercel settings
-- [ ] Add Calendly links to the coaching buttons
-- [ ] Push files to GitHub (this repo) as your backup
+- Say exactly which section to change: *"update the coaching prices in the coaching section"*
+- Say what NOT to touch: *"only change the footer, leave everything else alone"*
+- One thing at a time
+- If something breaks: *"undo that"*
+- Save your work to GitHub after every session: *"commit and push my changes to GitHub"*
