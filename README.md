@@ -79,6 +79,66 @@ Pure HTML + CSS + vanilla JS. No frameworks. Two files: index.html and ask.html
 
 ---
 
+## After Claude sets it up — your checklist
+
+Once Claude finishes the setup, here's exactly what to do next:
+
+**Step 1 — Preview your site locally**
+Your site is now on your computer. Tell Claude:
+```
+Open the site so I can see it in my browser
+```
+Claude will start a local preview. You'll see a link like `http://localhost:3000` — open that in Chrome.
+
+**Step 2 — Make your edits**
+Tell Claude anything you want to change before going live:
+```
+Change the discovery call price to $600
+Add my Instagram link @starjessetaylor to the footer
+Replace the hero headline with: "Rewire your brain. Reclaim your life."
+```
+
+**Step 3 — Deploy to Vercel (go live)**
+Tell Claude:
+```
+Deploy this to Vercel
+```
+Claude will run the command. If it asks you to log in, type `! npx vercel login` in the chat — it'll open a browser window to sign in with your email.
+
+After login, tell Claude:
+```
+Deploy to Vercel now
+```
+It will give you a live URL like `https://star-website.vercel.app` — your site is now on the internet.
+
+**Step 4 — Connect your domain**
+1. Buy your domain at [namecheap.com](https://namecheap.com) (e.g. `starjessetaylor.com`, ~$12/yr)
+2. Go to [vercel.com](https://vercel.com) → your project → Settings → Domains
+3. Type your domain in and Vercel gives you exact DNS instructions to paste into Namecheap
+4. Takes 10-30 min to go live
+
+**Step 5 — Save everything to GitHub**
+Tell Claude:
+```
+Save all my changes to GitHub
+```
+This backs up every version. If anything ever breaks, you can always go back.
+
+**Step 6 — Add your booking link**
+Find the "Apply Now" buttons in the coaching section and tell Claude:
+```
+Make both Apply Now buttons link to: [your Calendly URL]
+```
+
+**That's it — you're live.**
+
+For any future changes, open Claude Code and just describe what you want:
+- *"Add a new testimonial from [name]: [quote]"*
+- *"Change the workshop price to $597"*
+- *"Add a new section for my podcast"*
+
+---
+
 ## The 3 things that make a website work
 
 **1. Code** — The two files in this repo (`index.html`, `ask.html`). Claude writes and edits these for you.
